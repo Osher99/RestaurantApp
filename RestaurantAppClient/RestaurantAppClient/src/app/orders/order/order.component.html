@@ -1,0 +1,35 @@
+<form #form="ngForm" autocomplete="off">
+  <div class="container">
+
+<div class="row" >
+  <div class="col-md-6">
+<div class="form-group">
+  <label>Order No.</label>
+  <input name="OrderNo" #OrderNo="ngModel" [(ngModel)]="service.formData.OrderNo" class="form-control"> 
+</div>
+<div class="form-group">
+    <label>Customer</label>
+    <select name="CustomerID" #CustomerID="ngModel" [(ngModel)]="service.formData.CustomerID" class="form-control"> 
+  <option value="0">-Select-</option>
+    </select>
+    </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-group">
+          <label>Payment Method</label>
+          <select name="PayMethod" #PayMethod="ngModel" [(ngModel)]="service.formData.PayMethod" class="form-control"> 
+              <option value="">-Select-</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Grand Total</label>
+                <input name="GrandTotal" #GrandTotal="ngModel" [(ngModel)]="service.formData.GrandTotal" class="form-control"> 
+              </div>
+  </div>
+</div>
+<div class="form-froup">  
+  <button type="submit" class="btn btn-dark"><i class="fa fa-database" aria-hidden="true"></i> Submit</button>
+</div>
+</div>
+
+</form>
