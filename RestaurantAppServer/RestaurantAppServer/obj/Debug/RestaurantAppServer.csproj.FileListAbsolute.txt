@@ -84,3 +84,6 @@ C:\Users\osher\OneDrive\Desktop\GITProjects\RestaurentApp\RestaurantApp\Restaura
 C:\Users\osher\OneDrive\Desktop\GITProjects\RestaurentApp\RestaurantApp\RestaurantAppServer\RestaurantAppServer\obj\Debug\RestaurantAppServer.csproj.CopyComplete
 C:\Users\osher\OneDrive\Desktop\GITProjects\RestaurentApp\RestaurantApp\RestaurantAppServer\RestaurantAppServer\obj\Debug\RestaurantAppServer.dll
 C:\Users\osher\OneDrive\Desktop\GITProjects\RestaurentApp\RestaurantApp\RestaurantAppServer\RestaurantAppServer\obj\Debug\RestaurantAppServer.pdb
+C:\Users\osher\OneDrive\Desktop\GITProjects\RestaurentApp\RestaurantApp\RestaurantAppServer\RestaurantAppServer\bin\System.Web.Cors.dll
+C:\Users\osher\OneDrive\Desktop\GITProjects\RestaurentApp\RestaurantApp\RestaurantAppServer\RestaurantAppServer\bin\System.Web.Http.Cors.dll
+C:\Users\osher\OneDrive\Desktop\GITProjects\RestaurentApp\RestaurantApp\RestaurantAppServer\RestaurantAppServer\bin\System.Web.Http.Cors.xml

@@ -1,7 +1,7 @@
 <!-- *ngIf="!service.formData" -->
-<form #form="ngForm" autocomplete="off" >
+<form #form="ngForm" autocomplete="off" *ngIf="service.formData" (submit)="onSubmit(form)">
+  <input type="hidden" name="OrderID" #OrderID="ngModel" [(ngModel)]="service.formData.OrderID" class="form-control" readonly> 
   <div class="container">
-
 <div class="row" >
   <div class="col-md-6">
 <div class="form-group">
@@ -15,15 +15,18 @@
 </div>
 <div class="form-group">
     <label>Customer</label>
-    <select name="CustomerID" #CustomerID="ngModel" [(ngModel)]="service.formData.CustomerID" class="form-control"> 
+    <select name="CustomerID" #CustomerID="ngModel" [(ngModel)]="service.formData.CustomerID" class="form-control"
+    [class.is-invalid]="!isValid && service.formData.CustomerID==0"> 
   <option value="0">-Select-</option>
+  <option *ngFor="let item of customerList" value="{{item.CustomerID}}">{{item.Name}}</option>
     </select>
     </div>
   </div>
   <div class="col-md-6">
       <div class="form-group">
           <label>Payment Method</label>
-          <select name="PayMethod" #PayMethod="ngModel" [(ngModel)]="service.formData.PayMethod" class="form-control"> 
+          <select name="PMethod" #PMethod="ngModel" [(ngModel)]="service.formData.PMethod" class="form-control"
+          [class.text-danger]="!isValid && service.formData.PMethod==''"> 
               <option value="">-Select-</option>
               <option value="Cash">Cash</option>
               <option value="Card">Card</option>
@@ -35,7 +38,7 @@
                   <div class="input-group-prepend">
                   <div class="input-group-text">$</div>
                   </div>
-                  <input name="GrandTotal" #GrandTotal="ngModel" [(ngModel)]="service.formData.GrandTotal" class="form-control" readonly> 
+                  <input name="GTotal" #GTotal="ngModel" [(ngModel)]="service.formData.GTotal" class="form-control" readonly> 
                 </div>
               </div>
   </div>
@@ -52,7 +55,7 @@
     </th>
   </thead>
   <tbody>
-    <tr *ngIf="service.orderItems.length==0">
+    <tr *ngIf="service.orderItems.length==0" [class.text-danger]="!isValid && service.orderItems.length==0">
       <td class="font-italic text-center" colspan="5">
         No food item selected for this order!
       </td>
@@ -61,9 +64,10 @@
   <td>{{item.ItemName}}</td>
   <td>{{item.Price}}</td>
   <td>{{item.Quantity}}</td>
-  <td>{{item.Total}}</td>
+  <td>{{item.GTotal}}</td>
 <td>
     <a class="btn btn-sm btn-info text-white" (click)="AddOrEditOrderItem(i, service.formData.OrderID)"><i class="fa fa-pencil"></i></a>
+    <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteOrderItem(item.OrderItemID, i)"><i class="fa fa-trash"></i></a>
 
 </td>
 </tr>
@@ -71,6 +75,8 @@
 </table>
 <div class="form-froup">  
   <button type="submit" class="btn btn-dark"><i class="fa fa-database" aria-hidden="true"></i> Submit</button>
+  <a class="btn btn-outline-dark ml-1" routerLink="/orders"><i class="fa fa-table"></i> View all Orders</a>
+
 </div>
 </div>
 

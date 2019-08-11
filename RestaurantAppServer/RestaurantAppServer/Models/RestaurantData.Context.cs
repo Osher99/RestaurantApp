@@ -16,8 +16,9 @@ namespace RestaurantAppServer.Models
     public partial class RestaurantDBEntities : DbContext
     {
         public RestaurantDBEntities()
-            : base("name=RestaurantDBEntities")
+            : base("name=RestuarantDBAppEntities")
         {
+            base.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

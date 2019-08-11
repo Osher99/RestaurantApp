@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
 
-  constructor() { }
+  constructor(private httpService: HttpClient) { }
+
+  getItemList() {
+    return this.httpService.get(environment.apiURL + '/Item').toPromise();
+  }
 }

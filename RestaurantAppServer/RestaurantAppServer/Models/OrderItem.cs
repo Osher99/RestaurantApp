@@ -21,7 +21,5 @@ namespace RestaurantAppServer.Models
     
         public virtual Item Item { get; set; }
         public virtual Order Order { get; set; }
-        public virtual OrderItem OrderItems1 { get; set; }
-        public virtual OrderItem OrderItem1 { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RestaurantDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="RestuarantDBAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerID" />
@@ -27,8 +27,8 @@
           <Property Name="OrderID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrderNo" Type="varchar" MaxLength="50" />
           <Property Name="CustomerID" Type="int" />
-          <Property Name="PayMethod" Type="varchar" MaxLength="50" />
-          <Property Name="GrandTotal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PMethod" Type="varchar" MaxLength="50" />
+          <Property Name="GTotal" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="OrderItems">
           <Key>
@@ -75,19 +75,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderItems_OrderItems">
-          <End Role="OrderItems" Type="Self.OrderItems" Multiplicity="1" />
-          <End Role="OrderItems1" Type="Self.OrderItems" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="OrderItems">
-              <PropertyRef Name="OrderItemID" />
-            </Principal>
-            <Dependent Role="OrderItems1">
-              <PropertyRef Name="OrderItemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="RestaurantDBModelStoreContainer">
+        <EntityContainer Name="RestuarantDBAppModelStoreContainer">
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
@@ -104,16 +92,12 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderItems_OrderItems" Association="Self.FK_OrderItems_OrderItems">
-            <End Role="OrderItems" EntitySet="OrderItems" />
-            <End Role="OrderItems1" EntitySet="OrderItems" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="RestaurantDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="RestuarantDBAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerID" />
@@ -138,8 +122,8 @@
           <Property Name="OrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CustomerID" Type="Int32" />
-          <Property Name="PayMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="GrandTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GTotal" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItems_Order" FromRole="Order" ToRole="OrderItems" />
         </EntityType>
@@ -153,8 +137,6 @@
           <Property Name="Quantity" Type="Int32" />
           <NavigationProperty Name="Item" Relationship="Self.FK_OrderItems_Item" FromRole="OrderItems" ToRole="Item" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderItems_Order" FromRole="OrderItems" ToRole="Order" />
-          <NavigationProperty Name="OrderItems1" Relationship="Self.FK_OrderItems_OrderItems" FromRole="OrderItems" ToRole="OrderItems1" />
-          <NavigationProperty Name="OrderItem1" Relationship="Self.FK_OrderItems_OrderItems" FromRole="OrderItems1" ToRole="OrderItems" />
         </EntityType>
         <Association Name="FK_Order_Customer">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
@@ -192,19 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderItems_OrderItems">
-          <End Role="OrderItems" Type="Self.OrderItem" Multiplicity="1" />
-          <End Role="OrderItems1" Type="Self.OrderItem" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="OrderItems">
-              <PropertyRef Name="OrderItemID" />
-            </Principal>
-            <Dependent Role="OrderItems1">
-              <PropertyRef Name="OrderItemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="RestaurantDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RestuarantDBAppEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
@@ -221,19 +191,15 @@
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderItems" EntitySet="OrderItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderItems_OrderItems" Association="Self.FK_OrderItems_OrderItems">
-            <End Role="OrderItems" EntitySet="OrderItems" />
-            <End Role="OrderItems1" EntitySet="OrderItems" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RestaurantDBModelStoreContainer" CdmEntityContainer="RestaurantDBEntities">
+        <EntityContainerMapping StorageEntityContainer="RestuarantDBAppModelStoreContainer" CdmEntityContainer="RestuarantDBAppEntities">
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="RestaurantDBModel.Customer">
+            <EntityTypeMapping TypeName="RestuarantDBAppModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -241,7 +207,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="RestaurantDBModel.Item">
+            <EntityTypeMapping TypeName="RestuarantDBAppModel.Item">
               <MappingFragment StoreEntitySet="Item">
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -250,18 +216,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="RestaurantDBModel.Order">
+            <EntityTypeMapping TypeName="RestuarantDBAppModel.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="PayMethod" ColumnName="PayMethod" />
-                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="PMethod" ColumnName="PMethod" />
+                <ScalarProperty Name="GTotal" ColumnName="GTotal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderItems">
-            <EntityTypeMapping TypeName="RestaurantDBModel.OrderItem">
+            <EntityTypeMapping TypeName="RestuarantDBAppModel.OrderItem">
               <MappingFragment StoreEntitySet="OrderItems">
                 <ScalarProperty Name="OrderItemID" ColumnName="OrderItemID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
