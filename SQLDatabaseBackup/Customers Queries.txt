@@ -1,0 +1,15 @@
+SET IDENTITY_INSERT [dbo].[Customer] ON
+GO
+INSERT [dbo].[Customer] ([CustomerID], [Name]) VALUES (1, N'Olivia Kathleen')
+GO
+INSERT [dbo].[Customer] ([CustomerID], [Name]) VALUES (2, N'Liam Patrick')
+GO
+INSERT [dbo].[Customer] ([CustomerID], [Name]) VALUES (3, N'Charlotte Rose')
+GO
+INSERT [dbo].[Customer] ([CustomerID], [Name]) VALUES (4, N'ELijah burke')
+GO
+INSERT [dbo].[Customer] ([CustomerID], [Name]) VALUES (5, N'Osher Dror')
+GO
+INSERT [dbo].[Customer] ([CustomerID], [Name]) VALUES (6, N'Nathan Shohat')
+GO
+SET IDENTITY_INSERT [dbo].[Customers] OFF
